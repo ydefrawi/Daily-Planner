@@ -73,7 +73,7 @@ Button3.addEventListener("click",function(){
     var input3 = textArea3.value;
     console.log("button 3 hit")
     console.log(textArea3.value)
-    localStorage.setItem("12AM",input3)
+    localStorage.setItem("11AM",input3)
     
 })
 
