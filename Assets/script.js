@@ -5,6 +5,7 @@ var thisHour = moment().format("HH")
 var rows = document.getElementsByClassName("row")
 var allButtons = document.getElementsByClassName("btn")
 
+//Queries for save buttons
 var Button1 = document.getElementById("button1")
 var Button2 = document.getElementById("button2")
 var Button3 = document.getElementById("button3")
@@ -22,9 +23,7 @@ var Button14 = document.getElementById("button14")
 var Button15 = document.getElementById("button15")
 var Button16 = document.getElementById("button16")
 
-
-
-
+//Queries for Text Areas
 var textArea1 = document.getElementById("textArea1")
 var textArea2 = document.getElementById("textArea2")
 var textArea3 = document.getElementById("textArea3")
@@ -45,13 +44,15 @@ var textArea16 = document.getElementById("textArea16")
 
 console.log("this hour: "+thisHour)
 
-console.log(moment("8AM","hA").format("hA"))
+//console.log(moment("8AM","hA").format("hA"))
 
 
 //Event Listeners -----------------------
 //PROBLEMS. I have the keys in the object in 12-hour format 
 //But I named buttons and text areas starting from 1 (9PM) through 16 (12AM)
-//so right now they don't even match a 24-hour format
+//so right now they don't even match a 24-hour format. 
+
+//I know I could have taken care of all of these with a loop, struggled for a bit.
 
 Button1.addEventListener("click",function(){
     var input1 = textArea1.value;
@@ -181,49 +182,14 @@ Button16.addEventListener("click",function(){
 })
 
 
-
-console.log(allButtons)
-
-function inputStore(event) {
-
-
-}
-
-// inputStore();
+//Messing with DOM navigation. 
+//was going to pull text from text areas and 
+//save to local storage using something like this 
+console.log("text content of column at index 0: " + rows[0].children[0].textContent.trim())
 
 
-//Functions---------------------------
-
-// if(rows[0].children[0].textContent.trim()){
-//     change class of the this column to green
-// }
-
-
-console.log("text content of column at index 0: " + rows[0].children[1].textContent.trim())
-
-
-// function populateStorage () {
-//     localStorage.setItem("9AM","")
-//     localStorage.setItem("10AM","")
-//     localStorage.setItem("11AM","")
-//     localStorage.setItem("12PM","")
-//     localStorage.setItem("1PM","")
-//     localStorage.setItem("2PM","")
-//     localStorage.setItem("3PM","")
-//     localStorage.setItem("4PM","")
-//     localStorage.setItem("5PM","")
-//     localStorage.setItem("6PM","")
-//     localStorage.setItem("7PM","")
-//     localStorage.setItem("8PM","")
-//     localStorage.setItem("9PM","")
-//     localStorage.setItem("10PM","")
-//     localStorage.setItem("11PM","")
-//     localStorage.setItem("12AM","")
-
-// }
-
+//function that renders all items from localStorage onto the page
 function populateRows() {
-
     textArea1.innerHTML=localStorage.getItem("9AM")
     textArea2.innerHTML=localStorage.getItem("10AM")
     textArea3.innerHTML=localStorage.getItem("11AM")
@@ -240,12 +206,11 @@ function populateRows() {
     textArea14.innerHTML=localStorage.getItem("10PM")
     textArea15.innerHTML=localStorage.getItem("11PM")
     textArea16.innerHTML=localStorage.getItem("12PM")
-    
+
 }
 
+//FUNCTION CALLS
 populateRows();
-// populateStorage();
-console.log(localStorage)
 
-//adds current day to subheader
+//Adds current day to subheader
 currentDay.textContent=moment().format("dddd, MMMM Do")
