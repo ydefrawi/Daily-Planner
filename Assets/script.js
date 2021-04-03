@@ -1,10 +1,11 @@
 //Selectors
 var currentDay = document.getElementById("currentDay")
 var thisHour = moment().format("HH")
-
+var textAreas = document.querySelectorAll("textarea")
+console.log(textAreas)
 var rows = document.getElementsByClassName("row")
-var allButtons = document.getElementsByClassName("btn")
-
+var saveButtons = document.getElementsByClassName("saveBtn")
+console.log(saveButtons)
 //Queries for save buttons
 var Button1 = document.getElementById("button1")
 var Button2 = document.getElementById("button2")
@@ -53,134 +54,17 @@ console.log("this hour: "+thisHour)
 //so right now they don't even match a 24-hour format. 
 
 //I know I could have taken care of all of these with a loop, struggled for a bit.
+console.log(typeof saveButtons)
 
-Button1.addEventListener("click",function(){
-    var input1 = textArea1.value;
-    console.log("button 1 hit")
-    console.log(textArea1.value)
-    localStorage.setItem("9AM",input1)
-})
-
-Button2.addEventListener("click",function(){
-    var input2 = textArea2.value;
-    console.log("button 2 hit")
-    console.log(textArea2.value)
-    localStorage.setItem("10AM",input2)
+for (const button of saveButtons) {
+    console.log(button.id);
+    button.addEventListener('click', function(event){
+        var textInput = event.target.parentNode.previousElementSibling.firstElementChild.value;
+        console.log(event.target.id)
+        localStorage.setItem(event.target.id,textInput);
+    })
     
-})
-
-Button3.addEventListener("click",function(){
-    var input3 = textArea3.value;
-    console.log("button 3 hit")
-    console.log(textArea3.value)
-    localStorage.setItem("11AM",input3)
-    
-})
-
-Button4.addEventListener("click",function(){
-    var input4 = textArea4.value;
-    console.log("button 4 hit")
-    console.log(textArea4.value)
-    localStorage.setItem("12PM",input4)
-    
-})
-
-Button5.addEventListener("click",function(){
-    var input5 = textArea5.value;
-    console.log("button 5 hit")
-    console.log(textArea5.value)
-    localStorage.setItem("1PM",input5)
-    
-})
-
-Button6.addEventListener("click",function(){
-    var input6 = textArea6.value;
-    console.log("button 6 hit")
-    console.log(textArea6.value)
-    localStorage.setItem("2PM",input6)
-    
-})
-
-Button7.addEventListener("click",function(){
-    var input7 = textArea7.value;
-    console.log("button 7 hit")
-    console.log(textArea7.value)
-    localStorage.setItem("3PM",input7)
-    
-})
-
-Button8.addEventListener("click",function(){
-    var input8 = textArea8.value;
-    console.log("button 8 hit")
-    console.log(textArea8.value)
-    localStorage.setItem("4PM",input8)
-    
-})
-
-Button9.addEventListener("click",function(){
-    var input9 = textArea9.value;
-    console.log("button 9 hit")
-    console.log(textArea9.value)
-    localStorage.setItem("5PM",input9)
-    
-})
-
-Button10.addEventListener("click",function(){
-    var input10 = textArea10.value;
-    console.log("button 10 hit")
-    console.log(textArea10.value)
-    localStorage.setItem("6PM",input10)
-    
-})
-
-Button11.addEventListener("click",function(){
-    var input11 = textArea11.value;
-    console.log("button 11 hit")
-    console.log(textArea11.value)
-    localStorage.setItem("7PM",input11)
-    
-})
-
-Button12.addEventListener("click",function(){
-    var input12 = textArea12.value;
-    console.log("button 12 hit")
-    console.log(textArea12.value)
-    localStorage.setItem("8PM",input12)
-    
-})
-
-Button13.addEventListener("click",function(){
-    var input13 = textArea13.value;
-    console.log("button 13 hit")
-    console.log(textArea13.value)
-    localStorage.setItem("9PM",input13)
-    
-})
-
-Button14.addEventListener("click",function(){
-    var input14 = textArea14.value;
-    console.log("button 14 hit")
-    console.log(textArea14.value)
-    localStorage.setItem("10PM",input14)
-    
-})
-
-Button15.addEventListener("click",function(){
-    var input15 = textArea15.value;
-    console.log("button 15 hit")
-    console.log(textArea15.value)
-    localStorage.setItem("11PM",input15)
-    
-})
-
-Button16.addEventListener("click",function(){
-    var input16 = textArea16.value;
-    console.log("button 16 hit")
-    console.log(textArea16.value)
-    localStorage.setItem("12PM",input16)
-    
-})
-
+}
 
 //Messing with DOM navigation. 
 //was going to pull text from text areas and 
@@ -207,7 +91,33 @@ function populateRows() {
     textArea15.innerHTML=localStorage.getItem("11PM")
     textArea16.innerHTML=localStorage.getItem("12PM")
 
+    console.log(moment().format('HH'))
+    for (const textarea of textAreas) {
+        if (textarea.dataset.hour < thisHour){
+            console.log("hey")
+            textarea.classList.add('past')
+            textarea.classList.remove('present')
+            textarea.classList.remove('future')
+        } else if (textarea.dataset.hour > thisHour) {
+            textarea.classList.add('future')
+            textarea.classList.remove('past')
+            textarea.classList.remove('present')
+        } else {
+            textarea.classList.add('present')
+            textarea.classList.remove('past')
+            textarea.classList.remove('future')
+        }
+        
+    }
 }
+
+
+function clearStorage(){
+    localStorage.clear();
+    populateRows();
+}
+
+document.querySelector('#delete-btn').addEventListener('click', clearStorage)
 
 //FUNCTION CALLS
 populateRows();
