@@ -42,6 +42,7 @@ textarea {
   background-color: #ffffff;
   color: #000000;
   border-top: 1px dashed #000000;
+  text-align: left;
 }
 
 .past {
@@ -64,6 +65,7 @@ textarea {
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
   background-color: #06aed5;
+  margin-left:-30px;
   color: white;
   padding:15px
 }
@@ -73,3 +75,6 @@ textarea {
   transition: all 0.3s ease-in-out;
 }
 
+#delete-btn {
+  text-align: right;
+}
