@@ -5,62 +5,17 @@ var textAreas = document.querySelectorAll("textarea")
 console.log(textAreas)
 var rows = document.getElementsByClassName("row")
 var saveButtons = document.getElementsByClassName("saveBtn")
-console.log(saveButtons)
-//Queries for save buttons
-// var Button1 = document.getElementById("button1")
-// var Button2 = document.getElementById("button2")
-// var Button3 = document.getElementById("button3")
-// var Button4 = document.getElementById("button4")
-// var Button5 = document.getElementById("button5")
-// var Button6 = document.getElementById("button6")
-// var Button7 = document.getElementById("button7")
-// var Button8 = document.getElementById("button8")
-// var Button9 = document.getElementById("button9")
-// var Button10 = document.getElementById("button10")
-// var Button11 = document.getElementById("button11")
-// var Button12 = document.getElementById("button12")
-// var Button13 = document.getElementById("button13")
-// var Button14 = document.getElementById("button14")
-// var Button15 = document.getElementById("button15")
-// var Button16 = document.getElementById("button16")
-
-//Queries for Text Areas
-var textArea1 = document.getElementById("textArea1")
-var textArea2 = document.getElementById("textArea2")
-var textArea3 = document.getElementById("textArea3")
-var textArea4 = document.getElementById("textArea4")
-var textArea5 = document.getElementById("textArea5")
-var textArea6 = document.getElementById("textArea6")
-var textArea7 = document.getElementById("textArea7")
-var textArea8 = document.getElementById("textArea8")
-var textArea9 = document.getElementById("textArea9")
-var textArea10 = document.getElementById("textArea10")
-var textArea11 = document.getElementById("textArea11")
-var textArea12 = document.getElementById("textArea12")
-var textArea13 = document.getElementById("textArea13")
-var textArea14 = document.getElementById("textArea14")
-var textArea15 = document.getElementById("textArea15")
-var textArea16 = document.getElementById("textArea16")
-
-
-console.log("this hour: "+thisHour)
 
 //console.log(moment("8AM","hA").format("hA"))
 
 
 //Event Listeners -----------------------
-//PROBLEMS. I have the keys in the object in 12-hour format 
-//But I named buttons and text areas starting from 1 (9PM) through 16 (12AM)
-//so right now they don't even match a 24-hour format. 
-
-//I know I could have taken care of all of these with a loop, struggled for a bit.
-console.log(typeof saveButtons)
 
 for (const button of saveButtons) {
-    console.log(button.id);
+    // console.log(button.id);
     button.addEventListener('click', function(event){
         var textInput = event.target.parentNode.previousElementSibling.firstElementChild.value;
-        console.log(event.target.id)
+        // console.log(event.target.id)
         localStorage.setItem(event.target.id,textInput);
     })
     
