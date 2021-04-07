@@ -1,15 +1,12 @@
-//Selectors
+//SELECTORS--------------------------------------
 var currentDay = document.getElementById("currentDay")
 var thisHour = moment().format("HH")
 var textAreas = document.querySelectorAll("textarea")
-console.log(textAreas)
 var rows = document.getElementsByClassName("row")
 var saveButtons = document.getElementsByClassName("saveBtn")
 
-//console.log(moment("8AM","hA").format("hA"))
 
-
-//Event Listeners -----------------------
+//EVENT LISTENERS -----------------------
 
 for (const button of saveButtons) {
     // console.log(button.id);
@@ -21,11 +18,7 @@ for (const button of saveButtons) {
     
 }
 
-//Messing with DOM navigation. 
-//was going to pull text from text areas and 
-//save to local storage using something like this 
-console.log("text content of column at index 0: " + rows[0].children[0].textContent.trim())
-
+//FUNCTIONS ----------------------
 
 //function that renders all items from localStorage onto the page
 function populateRows() {
@@ -46,10 +39,8 @@ function populateRows() {
     textArea15.innerHTML=localStorage.getItem("11PM")
     textArea16.innerHTML=localStorage.getItem("12PM")
 
-    console.log(moment().format('HH'))
     for (const textarea of textAreas) {
         if (textarea.dataset.hour < thisHour){
-            console.log("hey")
             textarea.classList.add('past')
             textarea.classList.remove('present')
             textarea.classList.remove('future')
